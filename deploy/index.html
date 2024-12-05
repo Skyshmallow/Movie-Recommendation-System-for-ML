@@ -23,11 +23,20 @@
     }
 
     .left-panel {
-      width: 30%;
-      background-color: #2c2c2c;
-      padding: 20px;
-      border-right: 1px solid #444;
-    }
+  width: 30%;
+  background-color: #2c2c2c;
+  padding: 20px;
+  border-right: 1px solid #444;
+  position: relative; /* Ensure the panel itself stays fixed in place */
+}
+
+.sticky-preferences {
+  position: sticky;
+  top: 0; /* Adjust as needed to respect header space */
+  z-index: 10; /* Ensure it stays on top of other elements */
+  background-color: #2c2c2c; /* Matches the left-panel background */
+  padding-bottom: 10px; /* Add padding for cleaner separation */
+}
 
     .right-panel {
       width: 70%;
@@ -37,6 +46,11 @@
       gap: 20px;
       background-color: #1c1c1c;
       justify-content: center;
+    }
+
+    .left-panel,
+    .right-panel {
+      min-height: 600px; /* Adjust this value to make the panels taller */
     }
 
     .movie-card {
@@ -79,11 +93,45 @@
     }
 
     footer {
-      background-color: #111;
-      color: #f5f5f5;
-      text-align: center;
-      padding: 15px;
-    }
+  background-color: #111;
+  color: #f5f5f5;
+  padding: 20px 0;
+}
+
+footer h5 {
+  margin-bottom: 15px;
+}
+
+footer a {
+  color: #f5f5f5;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #ff6f61; /* Highlight color */
+}
+
+footer ul {
+  padding: 0;
+  list-style: none;
+}
+
+footer ul li {
+  margin-bottom: 5px;
+}
+
+footer .fa-lg {
+  margin-right: 8px;
+}
+
+footer .text-light {
+  opacity: 0.8;
+}
+
+footer .text-light:hover {
+  opacity: 1;
+}
+
 
     #trailerModal {
       display: none;
@@ -140,17 +188,19 @@
 
   <div class="split-container">
     <div class="left-panel">
-      <h2>Preference:</h2>
-      <div class="input-group mb-3">
-        <textarea id="selectedMovies" class="form-control" rows="3" placeholder="Selected movies..."></textarea>
-        <button id="recommendButton" class="btn btn-outline-danger">
-          <i class="fas fa-fire"></i> Recommend
-        </button>
-      </div>
+      <div class="sticky-preferences">
+        <h2>Preference:</h2>
+        <div class="input-group mb-3">
+          <textarea id="selectedMovies" class="form-control" rows="3" placeholder="Selected movies..."></textarea>
+          <button id="recommendButton" class="btn btn-outline-danger">
+            <i class="fas fa-fire"></i> Recommend
+          </button>
+        </div>
 
-      <div class="mb-3">
-        <input type="text" id="movieInput" class="form-control" placeholder="Search for movies...">
-        <div id="suggestions" class="mt-2"></div>
+        <div class="mb-3">
+          <input type="text" id="movieInput" class="form-control" placeholder="Search for movies...">
+          <div id="suggestions" class="mt-2"></div>
+        </div>
       </div>
     </div>
 
@@ -160,8 +210,55 @@
 
   </div>
   <footer>
-    <p>&copy; Popcorn Picks 2022</p>
+    <div class="container">
+      <!-- Main Row -->
+      <div class="row text-center text-md-start py-3">
+        
+        <!-- About Us (Left Section) -->
+        <div class="col-md-6 mb-3">
+          <h5>About Us</h5>
+          <p>Popcorn Picks is a Machine Learning project developed by:</p>
+          <ul class="list-unstyled">
+            <li>
+              Arsen Kenesbayev 
+              <a href="#" class="text-decoration-none text-light" aria-label="Arsen Kenesbayev on Instagram">
+                <i class="fa-brands fa-instagram fa-lg"></i>
+              </a>
+            </li>
+            <li>Nurbek Sagi</li>
+            <li>Aidos Orynbek</li>
+          </ul>
+        </div>
+        
+        <!-- Project GitHub (Right Section) -->
+        <div class="col-md-6 mb-3 text-md-end">
+          <h5>Project GitHub <a href="https://github.com/" target="_blank" class="text-decoration-none text-light" aria-label="View project on GitHub">
+            <i class="fa-brands fa-github fa-lg"></i> 
+          </a></h5>
+          <p>
+            
+          </p>
+        </div>
+      </div>
+      
+      <!-- Home Link -->
+      <div class="row text-center">
+        <div class="col mb-3">
+          <a href="#" class="text-decoration-none text-light" aria-label="Go to top of the page">Home</a>
+        </div>
+      </div>
+      
+      <!-- Bottom Row -->
+      <div class="row text-center">
+        <div class="col">
+          <p>&copy; 2024 Popcorn Picks. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
   </footer>
+  
+  
+  
 
 
   <div id="trailerModal">
