@@ -1,0 +1,412 @@
+[
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "cosine_similarity",
+        "importPath": "sklearn.metrics.pairwise",
+        "description": "sklearn.metrics.pairwise",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics.pairwise",
+        "documentation": {}
+    },
+    {
+        "label": "cosine_similarity",
+        "importPath": "sklearn.metrics.pairwise",
+        "description": "sklearn.metrics.pairwise",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics.pairwise",
+        "documentation": {}
+    },
+    {
+        "label": "TfidfVectorizer",
+        "importPath": "sklearn.feature_extraction.text",
+        "description": "sklearn.feature_extraction.text",
+        "isExtraImport": true,
+        "detail": "sklearn.feature_extraction.text",
+        "documentation": {}
+    },
+    {
+        "label": "TfidfVectorizer",
+        "importPath": "sklearn.feature_extraction.text",
+        "description": "sklearn.feature_extraction.text",
+        "isExtraImport": true,
+        "detail": "sklearn.feature_extraction.text",
+        "documentation": {}
+    },
+    {
+        "label": "mean_absolute_error",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "mean_squared_error",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "mean_absolute_error",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "mean_squared_error",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "send_from_directory",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "import_ipynb",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "import_ipynb",
+        "description": "import_ipynb",
+        "detail": "import_ipynb",
+        "documentation": {}
+    },
+    {
+        "label": "recommend_movies",
+        "importPath": "forth",
+        "description": "forth",
+        "isExtraImport": true,
+        "detail": "forth",
+        "documentation": {}
+    },
+    {
+        "label": "check_adult_content",
+        "kind": 2,
+        "importPath": "1Milestone.adult",
+        "description": "1Milestone.adult",
+        "peekOfCode": "def check_adult_content(text):\n    if pd.isnull(text):\n        return 0\n    text = text.lower()\n    for keyword in adult_keywords:\n        if keyword in text:\n            return 1\n    return 0\n# Create the 'adult' feature\n# Check both 'description' and 'keywords' columns",
+        "detail": "1Milestone.adult",
+        "documentation": {}
+    },
+    {
+        "label": "movies_file",
+        "kind": 5,
+        "importPath": "1Milestone.adult",
+        "description": "1Milestone.adult",
+        "peekOfCode": "movies_file = 'movies_data.csv'\ndata = pd.read_csv(movies_file)\n# Define a list of adult-related keywords\nadult_keywords = [\n    \"sex\", \"sexual\", \"lgbtq\", \"prostitute\", \"erotic\", \"nudity\", \"nude\", \"porn\", \"xxx\", \"explicit\", \n    \"sensual\", \"intimate\", \"seduction\", \"fetish\", \"kinky\", \"provocative\", \"raunchy\", \"sultry\", \"taboo\", \"voyeur\",\n    \"bdsm\",\"stripper\", \"escort\", \"affair\", \"orgy\", \"brothel\", \n    \"lust\", \"vulgar\", \"softcore\", \"hardcore\", \"molestation\", \"incest\", \"rape\", \n    \"pedophile\", \"perversion\", \"depraved\", \"lewd\", \n    \"pornographic\", \"adult movie\", \"taboo themes\", ",
+        "detail": "1Milestone.adult",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "1Milestone.adult",
+        "description": "1Milestone.adult",
+        "peekOfCode": "data = pd.read_csv(movies_file)\n# Define a list of adult-related keywords\nadult_keywords = [\n    \"sex\", \"sexual\", \"lgbtq\", \"prostitute\", \"erotic\", \"nudity\", \"nude\", \"porn\", \"xxx\", \"explicit\", \n    \"sensual\", \"intimate\", \"seduction\", \"fetish\", \"kinky\", \"provocative\", \"raunchy\", \"sultry\", \"taboo\", \"voyeur\",\n    \"bdsm\",\"stripper\", \"escort\", \"affair\", \"orgy\", \"brothel\", \n    \"lust\", \"vulgar\", \"softcore\", \"hardcore\", \"molestation\", \"incest\", \"rape\", \n    \"pedophile\", \"perversion\", \"depraved\", \"lewd\", \n    \"pornographic\", \"adult movie\", \"taboo themes\", \n    \"indecent\", \"exposed\", \"uncensored\", \"provocation\", \"seductive\", \"temptation\", ",
+        "detail": "1Milestone.adult",
+        "documentation": {}
+    },
+    {
+        "label": "adult_keywords",
+        "kind": 5,
+        "importPath": "1Milestone.adult",
+        "description": "1Milestone.adult",
+        "peekOfCode": "adult_keywords = [\n    \"sex\", \"sexual\", \"lgbtq\", \"prostitute\", \"erotic\", \"nudity\", \"nude\", \"porn\", \"xxx\", \"explicit\", \n    \"sensual\", \"intimate\", \"seduction\", \"fetish\", \"kinky\", \"provocative\", \"raunchy\", \"sultry\", \"taboo\", \"voyeur\",\n    \"bdsm\",\"stripper\", \"escort\", \"affair\", \"orgy\", \"brothel\", \n    \"lust\", \"vulgar\", \"softcore\", \"hardcore\", \"molestation\", \"incest\", \"rape\", \n    \"pedophile\", \"perversion\", \"depraved\", \"lewd\", \n    \"pornographic\", \"adult movie\", \"taboo themes\", \n    \"indecent\", \"exposed\", \"uncensored\", \"provocation\", \"seductive\", \"temptation\", \n    \"flirtatious\", \"voyeurism\", \"depravity\", \"lecherous\", \"forbidden\", \"sensational\", \n    \"obscenities\", \"bare\", \"exposed body\", \"indulgent\"",
+        "detail": "1Milestone.adult",
+        "documentation": {}
+    },
+    {
+        "label": "data['adult']",
+        "kind": 5,
+        "importPath": "1Milestone.adult",
+        "description": "1Milestone.adult",
+        "peekOfCode": "data['adult'] = data['description'].apply(check_adult_content) | data['keywords'].apply(check_adult_content)\ndata['adult'] = data['adult'].astype(int)\n# Save the updated dataset\ndata.to_csv('movies_data_with_adult_feature.csv', index=False)\nprint(\"The 'adult' feature has been successfully added and saved to 'movies_data_with_adult_feature.csv'.\")",
+        "detail": "1Milestone.adult",
+        "documentation": {}
+    },
+    {
+        "label": "data['adult']",
+        "kind": 5,
+        "importPath": "1Milestone.adult",
+        "description": "1Milestone.adult",
+        "peekOfCode": "data['adult'] = data['adult'].astype(int)\n# Save the updated dataset\ndata.to_csv('movies_data_with_adult_feature.csv', index=False)\nprint(\"The 'adult' feature has been successfully added and saved to 'movies_data_with_adult_feature.csv'.\")",
+        "detail": "1Milestone.adult",
+        "documentation": {}
+    },
+    {
+        "label": "get_genres",
+        "kind": 2,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "def get_genres(genre_objects):\n    return [genre['name'] for genre in genre_objects]\ndef fetch_movie_details(movie_id):\n    details_url = f\"{MOVIE_URL}{movie_id}?api_key={API_KEY}&language=en-US\"\n    credits_url = f\"{MOVIE_URL}{movie_id}/credits?api_key={API_KEY}\"\n    keywords_url = f\"{MOVIE_URL}{movie_id}/keywords?api_key={API_KEY}\"\n    trailers_url = f\"{MOVIE_URL}{movie_id}/videos?api_key={API_KEY}\"\n    try:\n        # Fetch details\n        details_response = requests.get(details_url).json()",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_movie_details",
+        "kind": 2,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "def fetch_movie_details(movie_id):\n    details_url = f\"{MOVIE_URL}{movie_id}?api_key={API_KEY}&language=en-US\"\n    credits_url = f\"{MOVIE_URL}{movie_id}/credits?api_key={API_KEY}\"\n    keywords_url = f\"{MOVIE_URL}{movie_id}/keywords?api_key={API_KEY}\"\n    trailers_url = f\"{MOVIE_URL}{movie_id}/videos?api_key={API_KEY}\"\n    try:\n        # Fetch details\n        details_response = requests.get(details_url).json()\n        credits_response = requests.get(credits_url).json()\n        keywords_response = requests.get(keywords_url).json()",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_movies_data",
+        "kind": 2,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "def fetch_movies_data():\n    all_genres_response = requests.get(f\"{BASE_URL}genre/movie/list?api_key={API_KEY}&language=en-US\").json()\n    all_genres = {genre['id']: genre['name'] for genre in all_genres_response.get('genres', [])}\n    movies_data = []\n    page = 1\n    while len(movies_data) < 6000:\n        try:\n            response = requests.get(\n                SEARCH_URL, params={\n                    'api_key': API_KEY,",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "save_to_csv",
+        "kind": 2,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "def save_to_csv(data):\n    with open('movies_data.csv', 'w', newline='', encoding='utf-8') as csvfile:\n        writer = csv.writer(csvfile)\n        writer.writerow(fields)\n        writer.writerows(data)\n# Fetch and save the data\ndata = fetch_movies_data()\nsave_to_csv(data)\nprint(\"Data saved to movies_data.csv\")",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "API_KEY",
+        "kind": 5,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "API_KEY = '401aa692d6aa27c92e0fc0adedd58769'\nBASE_URL = 'https://api.themoviedb.org/3/'\nMOVIE_URL = BASE_URL + 'movie/'\nSEARCH_URL = BASE_URL + 'discover/movie'\n# Headers for the CSV\nfields = [\n    'title', 'genres', 'release_year', 'user_rating',\n    'keywords', 'director', 'description', 'poster_url', 'trailer_url'\n]\ndef get_genres(genre_objects):",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_URL",
+        "kind": 5,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "BASE_URL = 'https://api.themoviedb.org/3/'\nMOVIE_URL = BASE_URL + 'movie/'\nSEARCH_URL = BASE_URL + 'discover/movie'\n# Headers for the CSV\nfields = [\n    'title', 'genres', 'release_year', 'user_rating',\n    'keywords', 'director', 'description', 'poster_url', 'trailer_url'\n]\ndef get_genres(genre_objects):\n    return [genre['name'] for genre in genre_objects]",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "MOVIE_URL",
+        "kind": 5,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "MOVIE_URL = BASE_URL + 'movie/'\nSEARCH_URL = BASE_URL + 'discover/movie'\n# Headers for the CSV\nfields = [\n    'title', 'genres', 'release_year', 'user_rating',\n    'keywords', 'director', 'description', 'poster_url', 'trailer_url'\n]\ndef get_genres(genre_objects):\n    return [genre['name'] for genre in genre_objects]\ndef fetch_movie_details(movie_id):",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "SEARCH_URL",
+        "kind": 5,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "SEARCH_URL = BASE_URL + 'discover/movie'\n# Headers for the CSV\nfields = [\n    'title', 'genres', 'release_year', 'user_rating',\n    'keywords', 'director', 'description', 'poster_url', 'trailer_url'\n]\ndef get_genres(genre_objects):\n    return [genre['name'] for genre in genre_objects]\ndef fetch_movie_details(movie_id):\n    details_url = f\"{MOVIE_URL}{movie_id}?api_key={API_KEY}&language=en-US\"",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "fields",
+        "kind": 5,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "fields = [\n    'title', 'genres', 'release_year', 'user_rating',\n    'keywords', 'director', 'description', 'poster_url', 'trailer_url'\n]\ndef get_genres(genre_objects):\n    return [genre['name'] for genre in genre_objects]\ndef fetch_movie_details(movie_id):\n    details_url = f\"{MOVIE_URL}{movie_id}?api_key={API_KEY}&language=en-US\"\n    credits_url = f\"{MOVIE_URL}{movie_id}/credits?api_key={API_KEY}\"\n    keywords_url = f\"{MOVIE_URL}{movie_id}/keywords?api_key={API_KEY}\"",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "1Milestone.FirstMilestone",
+        "description": "1Milestone.FirstMilestone",
+        "peekOfCode": "data = fetch_movies_data()\nsave_to_csv(data)\nprint(\"Data saved to movies_data.csv\")",
+        "detail": "1Milestone.FirstMilestone",
+        "documentation": {}
+    },
+    {
+        "label": "recommend_movies",
+        "kind": 2,
+        "importPath": "4Milestone.hm",
+        "description": "4Milestone.hm",
+        "peekOfCode": "def recommend_movies(input_titles, data_path='4Milestone/cleaned_movies.csv', top_n=10, weights=None):\n    \"\"\"\n    Recommend movies based on input movie titles using multiple features with adjustable weights.\n    Now includes filtering for family-friendly recommendations.\n    \"\"\"\n    # Load movie data\n    movies_df = pd.read_csv(data_path)\n    # Ensure weights are defined for all features\n    if weights is None:\n        weights = {",
+        "detail": "4Milestone.hm",
+        "documentation": {}
+    },
+    {
+        "label": "evaluate_recommendation_model",
+        "kind": 2,
+        "importPath": "4Milestone.hm",
+        "description": "4Milestone.hm",
+        "peekOfCode": "def evaluate_recommendation_model(data_path='4Milestone/cleaned_movies.csv'):\n    \"\"\"\n    Evaluate the recommendation model using MAE and RMSE metrics.\n    Parameters:\n        data_path (str): Path to the cleaned movies data CSV file.\n    Returns:\n        dict: MAE and RMSE scores.\n    \"\"\"\n    # Load movie data\n    movies_df = pd.read_csv(data_path)",
+        "detail": "4Milestone.hm",
+        "documentation": {}
+    },
+    {
+        "label": "recommend_movies",
+        "kind": 2,
+        "importPath": "4Milestone.shitToDelete",
+        "description": "4Milestone.shitToDelete",
+        "peekOfCode": "def recommend_movies(input_titles, data_path='cleaned_movies.csv', top_n=10, weights=None):\n    \"\"\"\n    Recommend movies based on input movie titles using multiple features with adjustable weights.\n    \"\"\"\n    # Load movie data\n    movies_df = pd.read_csv(data_path)\n    # Ensure weights are defined for all features\n    if weights is None:\n        weights = {\n            'title': 1,",
+        "detail": "4Milestone.shitToDelete",
+        "documentation": {}
+    },
+    {
+        "label": "evaluate_recommendation_model",
+        "kind": 2,
+        "importPath": "4Milestone.shitToDelete",
+        "description": "4Milestone.shitToDelete",
+        "peekOfCode": "def evaluate_recommendation_model(data_path='cleaned_movies.csv'):\n    \"\"\"\n    Evaluate the recommendation model using MAE and RMSE metrics.\n    Parameters:\n        data_path (str): Path to the cleaned movies data CSV file.\n    Returns:\n        dict: MAE and RMSE scores.\n    \"\"\"\n    # Load movie data\n    movies_df = pd.read_csv(data_path)",
+        "detail": "4Milestone.shitToDelete",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def index():\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])\ndef recommend_endpoint():\n    titles = request.args.getlist('title')  # Get all titles as a list\n    if not titles:\n        return jsonify({'error': 'No titles provided'})",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "serve_static_file",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])\ndef recommend_endpoint():\n    titles = request.args.getlist('title')  # Get all titles as a list\n    if not titles:\n        return jsonify({'error': 'No titles provided'})\n    # Call your recommendation logic here\n    recommendations = recommend_movies(titles, data_path='cleaned_movies.csv')\n    if not recommendations:",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "recommend_endpoint",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def recommend_endpoint():\n    titles = request.args.getlist('title')  # Get all titles as a list\n    if not titles:\n        return jsonify({'error': 'No titles provided'})\n    # Call your recommendation logic here\n    recommendations = recommend_movies(titles, data_path='cleaned_movies.csv')\n    if not recommendations:\n        return jsonify({'error': 'Movies not found'})\n    return jsonify({'recommendations': recommendations})\n@app.route('/movie-details', methods=['GET'])",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "movie_details",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def movie_details():\n    title = request.args.get('title')\n    movie = movies_data[movies_data['title'] == title]\n    if movie.empty:\n        return jsonify({'error': f\"No details found for movie: {title}\"})\n    movie = movie.iloc[0]\n    # Handle missing trailer_url\n    trailer_url = movie['trailer_url']\n    if pd.isna(trailer_url):\n        trailer_url = None  # Or provide a default value",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "suggest_movies",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def suggest_movies():\n    query = request.args.get('query', '').lower()\n    if not query:\n        return jsonify([])\n    # Use cleaned_movies.csv for suggestions\n    suggestions = cleaned_data[cleaned_data['title'].str.lower().str.contains(query, na=False)]['title'].head(10).tolist()\n    return jsonify(suggestions)\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5000)",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "cleaned_data",
+        "kind": 5,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "cleaned_data = pd.read_csv('cleaned_movies.csv')\nmovies_data = pd.read_csv('movies.csv')\napp = Flask(__name__, static_folder=\".\")\n@app.route('/')\ndef index():\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "movies_data",
+        "kind": 5,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "movies_data = pd.read_csv('movies.csv')\napp = Flask(__name__, static_folder=\".\")\n@app.route('/')\ndef index():\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])\ndef recommend_endpoint():",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "app = Flask(__name__, static_folder=\".\")\n@app.route('/')\ndef index():\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])\ndef recommend_endpoint():\n    titles = request.args.getlist('title')  # Get all titles as a list",
+        "detail": "deploy.app",
+        "documentation": {}
+    }
+]

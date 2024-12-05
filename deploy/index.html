@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Recommendation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #1c1c1c;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .split-container {
+      display: flex;
+      flex: 1;
+    }
+
+    .left-panel {
+      width: 30%;
+      background-color: #2c2c2c;
+      padding: 20px;
+      border-right: 1px solid #444;
+    }
+
+    .right-panel {
+      width: 70%;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      background-color: #1c1c1c;
+      justify-content: center;
+    }
+
+    .movie-card {
+      width: calc(33.33% - 20px);
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      background-color: #2c2c2c;
+      color: #f5f5f5;
+      transition: transform 0.2s;
+    }
+
+    .movie-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .suggestion-item {
+      padding: 5px 10px;
+      background-color: #444;
+      border: 1px solid #555;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #f5f5f5;
+      transition: background-color 0.3s;
+    }
+
+    .suggestion-item:hover {
+      background-color: #555;
+    }
+
+    header {
+      background-color: #111;
+      color: #f5f5f5;
+      text-align: center;
+      padding: 15px;
+    }
+
+    footer {
+      background-color: #111;
+      color: #f5f5f5;
+      text-align: center;
+      padding: 15px;
+    }
+
+    #trailerModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #trailerFrame {
+      width: 80%;
+      height: 80%;
+      background: white;
+      border-radius: 10px;
+      z-index: 1001;
+    }
+
+    #trailerModal .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .input-group textarea {
+      flex: 1;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .btn-outline-danger {
+      flex-shrink: 0;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Popcorn Picks</h1>
+  </header>
+
+  <div class="split-container">
+    <div class="left-panel">
+      <h2>Preference:</h2>
+      <div class="input-group mb-3">
+        <textarea id="selectedMovies" class="form-control" rows="3" placeholder="Selected movies..."></textarea>
+        <button id="recommendButton" class="btn btn-outline-danger">
+          <i class="fas fa-fire"></i> Recommend
+        </button>
+      </div>
+
+      <div class="mb-3">
+        <input type="text" id="movieInput" class="form-control" placeholder="Search for movies...">
+        <div id="suggestions" class="mt-2"></div>
+      </div>
+    </div>
+
+    <div class="right-panel" id="recommendations">
+      <!-- Recommendations will appear here -->
+    </div>
+
+  </div>
+  <footer>
+    <p>&copy; Popcorn Picks 2022</p>
+  </footer>
+
+
+  <div id="trailerModal">
+    <div class="overlay" onclick="closeTrailer()"></div>
+    <iframe id="trailerFrame" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+
+
+  <script>
+    const backendUrl = 'https://helped-badger-solely.ngrok-free.app';
+
+    document.getElementById('movieInput').addEventListener('input', async () => {
+      const query = document.getElementById('movieInput').value;
+      const suggestionsDiv = document.getElementById('suggestions');
+
+      if (query.length > 1) {
+        const response = await fetch(`${backendUrl}/suggest?query=${encodeURIComponent(query)}`);
+        const suggestions = await response.json();
+
+        suggestionsDiv.innerHTML = '';
+        suggestions.forEach(movie => {
+          const suggestion = document.createElement('div');
+          suggestion.className = 'suggestion-item';
+          suggestion.textContent = movie;
+          suggestion.addEventListener('click', () => {
+            const selectedMovies = document.getElementById('selectedMovies');
+            selectedMovies.value += `${movie}, `;
+            suggestionsDiv.innerHTML = '';
+          });
+          suggestionsDiv.appendChild(suggestion);
+        });
+      } else {
+        suggestionsDiv.innerHTML = '';
+      }
+    });
+
+    document.getElementById('recommendButton').addEventListener('click', async () => {
+      const selectedMovies = document.getElementById('selectedMovies')
+        .value
+        .split(',')
+        .map(m => m.trim())
+        .filter(Boolean);
+      const recommendationsDiv = document.getElementById('recommendations');
+      recommendationsDiv.innerHTML = ''; // Clear old recommendations
+
+      if (selectedMovies.length === 0) {
+        alert("Please select at least one movie.");
+        return;
+      }
+
+      try {
+        const response = await fetch(`${backendUrl}/recommend?title=${selectedMovies.map(encodeURIComponent).join('&title=')}`);
+        const data = await response.json();
+
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
+
+        if (data.recommendations) {
+          data.recommendations.forEach(async (recommendation) => {
+            const detailsResponse = await fetch(`${backendUrl}/movie-details?title=${encodeURIComponent(recommendation)}`);
+            const details = await detailsResponse.json();
+
+            const card = document.createElement('div');
+            card.className = 'movie-card';
+            card.innerHTML = `
+              <img src="${details.poster_url}" alt="${details.title}">
+              <h3>${details.title}</h3>
+              <p>${details.description}</p>
+            `;
+            card.addEventListener('click', () => showTrailer(details.trailer_url));
+            recommendationsDiv.appendChild(card);
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching recommendations:', error);
+      }
+    });
+
+    function showTrailer(url) {
+      const modal = document.getElementById('trailerModal');
+      const frame = document.getElementById('trailerFrame');
+      const overlay = modal.querySelector('.overlay');
+      frame.src = url;
+      modal.style.display = 'flex';
+      overlay.style.zIndex = '1000'; // Ensure overlay works properly
+    }
+
+    function closeTrailer() {
+      const modal = document.getElementById('trailerModal');
+      const frame = document.getElementById('trailerFrame');
+      frame.src = ''; // Clear the trailer URL
+      modal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
