@@ -141,6 +141,22 @@
         "documentation": {}
     },
     {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "import_ipynb",
         "kind": 6,
         "isExtraImport": true,
@@ -155,6 +171,41 @@
         "description": "forth",
         "isExtraImport": true,
         "detail": "forth",
+        "documentation": {}
+    },
+    {
+        "label": "CORS",
+        "importPath": "flask_cors",
+        "description": "flask_cors",
+        "isExtraImport": true,
+        "detail": "flask_cors",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "hashlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "detail": "hashlib",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -338,11 +389,65 @@
         "documentation": {}
     },
     {
+        "label": "load_users",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:\n        return json.load(f)\ndef save_users(users):\n    with open('users.json', 'w') as f:\n        json.dump(users, f, indent=4)\ndef hash_password(password):",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "save_users",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def save_users(users):\n    with open('users.json', 'w') as f:\n        json.dump(users, f, indent=4)\ndef hash_password(password):\n    return hashlib.sha256(password.encode()).hexdigest()\n# Authentication routes\n@app.route('/register', methods=['POST'])\ndef register():\n    data = request.json\n    username = data.get('username')",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "hash_password",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def hash_password(password):\n    return hashlib.sha256(password.encode()).hexdigest()\n# Authentication routes\n@app.route('/register', methods=['POST'])\ndef register():\n    data = request.json\n    username = data.get('username')\n    password = data.get('password')\n    age = data.get('age')\n    gender = data.get('gender')",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def register():\n    data = request.json\n    username = data.get('username')\n    password = data.get('password')\n    age = data.get('age')\n    gender = data.get('gender')\n    if not all([username, password, age, gender]):\n        return jsonify({'error': 'All fields are required'}), 400\n    users = load_users()\n    if username in users:",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def login():\n    data = request.json\n    username = data.get('username')\n    password = data.get('password')\n    if not username or not password:\n        return jsonify({'error': 'Username and password are required'}), 400\n    users = load_users()\n    if username not in users or users[username]['password'] != hash_password(password):\n        return jsonify({'error': 'Invalid credentials'}), 401\n    session['username'] = username",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def logout():\n    session.pop('username', None)\n    return jsonify({'message': 'Logged out successfully'}), 200\n# Static file serving routes\n@app.route('/')\ndef index():\n    if 'username' not in session:\n        return send_from_directory(app.static_folder, \"login.html\")\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
         "label": "index",
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def index():\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])\ndef recommend_endpoint():\n    titles = request.args.getlist('title')  # Get all titles as a list\n    if not titles:\n        return jsonify({'error': 'No titles provided'})",
+        "peekOfCode": "def index():\n    if 'username' not in session:\n        return send_from_directory(app.static_folder, \"login.html\")\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['POST'])\ndef recommend_endpoint():\n    if 'username' not in session:",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -351,7 +456,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])\ndef recommend_endpoint():\n    titles = request.args.getlist('title')  # Get all titles as a list\n    if not titles:\n        return jsonify({'error': 'No titles provided'})\n    # Call your recommendation logic here\n    recommendations = recommend_movies(titles, data_path='cleaned_movies.csv')\n    if not recommendations:",
+        "peekOfCode": "def serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['POST'])\ndef recommend_endpoint():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401\n    # Get the logged-in username\n    username = session['username']\n    # Parse the selected movies from the request\n    data = request.json",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -360,7 +465,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def recommend_endpoint():\n    titles = request.args.getlist('title')  # Get all titles as a list\n    if not titles:\n        return jsonify({'error': 'No titles provided'})\n    # Call your recommendation logic here\n    recommendations = recommend_movies(titles, data_path='cleaned_movies.csv')\n    if not recommendations:\n        return jsonify({'error': 'Movies not found'})\n    return jsonify({'recommendations': recommendations})\n@app.route('/movie-details', methods=['GET'])",
+        "peekOfCode": "def recommend_endpoint():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401\n    # Get the logged-in username\n    username = session['username']\n    # Parse the selected movies from the request\n    data = request.json\n    selected_movies = data.get('selected_movies', [])\n    if not selected_movies:\n        return jsonify({'error': 'No movies selected'}), 400",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -369,7 +474,16 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def movie_details():\n    title = request.args.get('title')\n    movie = movies_data[movies_data['title'] == title]\n    if movie.empty:\n        return jsonify({'error': f\"No details found for movie: {title}\"})\n    movie = movie.iloc[0]\n    # Handle missing trailer_url\n    trailer_url = movie['trailer_url']\n    if pd.isna(trailer_url):\n        trailer_url = None  # Or provide a default value",
+        "peekOfCode": "def movie_details():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401\n    title = request.args.get('title')\n    movie = movies_data[movies_data['title'] == title]\n    if movie.empty:\n        return jsonify({'error': f\"No details found for movie: {title}\"})\n    movie = movie.iloc[0]\n    trailer_url = movie['trailer_url']\n    if pd.isna(trailer_url):",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "is_logged_in",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def is_logged_in():\n    if 'username' in session:\n        users = load_users()\n        selected_movies = users[session['username']].get('selected_movies', [])\n        return jsonify({'logged_in': True, 'username': session['username'], 'selected_movies': selected_movies})\n    return jsonify({'logged_in': False})\n@app.route('/suggest', methods=['GET'])\ndef suggest_movies():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -378,7 +492,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def suggest_movies():\n    query = request.args.get('query', '').lower()\n    if not query:\n        return jsonify([])\n    # Use cleaned_movies.csv for suggestions\n    suggestions = cleaned_data[cleaned_data['title'].str.lower().str.contains(query, na=False)]['title'].head(10).tolist()\n    return jsonify(suggestions)\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5000)",
+        "peekOfCode": "def suggest_movies():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401\n    query = request.args.get('query', '').lower()\n    if not query:\n        return jsonify([])\n    suggestions = cleaned_data[cleaned_data['title'].str.lower().str.contains(query, na=False)]['title'].head(10).tolist()\n    return jsonify(suggestions)\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5000)",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -387,7 +501,7 @@
         "kind": 5,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "cleaned_data = pd.read_csv('cleaned_movies.csv')\nmovies_data = pd.read_csv('movies.csv')\napp = Flask(__name__, static_folder=\".\")\n@app.route('/')\ndef index():\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])",
+        "peekOfCode": "cleaned_data = pd.read_csv('cleaned_movies.csv')\nmovies_data = pd.read_csv('movies.csv')\napp = Flask(__name__, static_folder=\".\")\nCORS(app, supports_credentials=True)  # Enable CORS with credentials\napp.secret_key = 'your_secret_key_here'  # Important for session management\n# User management functions\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -396,7 +510,7 @@
         "kind": 5,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "movies_data = pd.read_csv('movies.csv')\napp = Flask(__name__, static_folder=\".\")\n@app.route('/')\ndef index():\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])\ndef recommend_endpoint():",
+        "peekOfCode": "movies_data = pd.read_csv('movies.csv')\napp = Flask(__name__, static_folder=\".\")\nCORS(app, supports_credentials=True)  # Enable CORS with credentials\napp.secret_key = 'your_secret_key_here'  # Important for session management\n# User management functions\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -405,7 +519,16 @@
         "kind": 5,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "app = Flask(__name__, static_folder=\".\")\n@app.route('/')\ndef index():\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['GET'])\ndef recommend_endpoint():\n    titles = request.args.getlist('title')  # Get all titles as a list",
+        "peekOfCode": "app = Flask(__name__, static_folder=\".\")\nCORS(app, supports_credentials=True)  # Enable CORS with credentials\napp.secret_key = 'your_secret_key_here'  # Important for session management\n# User management functions\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:\n        return json.load(f)",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "app.secret_key",
+        "kind": 5,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "app.secret_key = 'your_secret_key_here'  # Important for session management\n# User management functions\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:\n        return json.load(f)\ndef save_users(users):\n    with open('users.json', 'w') as f:",
         "detail": "deploy.app",
         "documentation": {}
     }

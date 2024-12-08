@@ -1,0 +1,71 @@
+{
+    "Nurbek": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "25",
+        "gender": "Male"
+    },
+    "Arsen": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "25",
+        "gender": "Female"
+    },
+    "Doni": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "25",
+        "gender": "Male"
+    },
+    "Alan": {
+        "password": "b77c4e8ab2fb5ce536bb35289abd92d810f235a97032fa7f4701073d8610ae78",
+        "age": "20",
+        "gender": "Female"
+    },
+    "Nurdaulet": {
+        "password": "a320480f534776bddb5cdb54b1e93d210a3c7d199e80a23c1b2178497b184c76",
+        "age": "25",
+        "gender": "Male"
+    },
+    "Alisher": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "18",
+        "gender": "Male"
+    },
+    "Beka": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "25",
+        "gender": "Male"
+    },
+    "Aidos": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "20",
+        "gender": "Male"
+    },
+    "Face": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "5",
+        "gender": "Male"
+    },
+    "barsa": {
+        "password": "b622abdf4e840b2e5469a59c328d28fcb2553daf52bf96ab718a5ec3c5c32801",
+        "age": "12",
+        "gender": "Male",
+        "selected_movies": [
+            "Furious 7"
+        ]
+    },
+    "Nurs": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "19",
+        "gender": "Male",
+        "selected_movies": [
+            "Dune: Part Two"
+        ]
+    },
+    "Bitch": {
+        "password": "3dad840d7980cce4a9eb759a501bc9d257a88b5fd107098dc82a10116884f38e",
+        "age": "19",
+        "gender": "Male",
+        "selected_movies": [
+            "Out of My Mind"
+        ]
+    }
+}
