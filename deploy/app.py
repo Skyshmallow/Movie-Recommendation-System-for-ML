@@ -86,7 +86,7 @@ import json
 
 # Load the data
 cleaned_data = pd.read_csv('cleaned_movies.csv')
-movies_data = pd.read_csv('movies.csv')
+movies_data = pd.read_csv('2Milestone/adultAdded.csv')
 
 app = Flask(__name__, static_folder=".")
 CORS(app, supports_credentials=True)  # Enable CORS with credentials
