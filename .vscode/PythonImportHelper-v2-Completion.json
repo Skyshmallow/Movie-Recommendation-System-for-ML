@@ -18,6 +18,7 @@
         "documentation": {}
     },
     {
+<<<<<<< HEAD
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -77,6 +78,8 @@
         "documentation": {}
     },
     {
+=======
+>>>>>>> 33d4af048b1d4618129274920434a425a9310de5
         "label": "Flask",
         "importPath": "flask",
         "description": "flask",
@@ -167,6 +170,27 @@
         "documentation": {}
     },
     {
+<<<<<<< HEAD
+=======
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+>>>>>>> 33d4af048b1d4618129274920434a425a9310de5
         "label": "hashlib",
         "kind": 6,
         "isExtraImport": true,
@@ -275,6 +299,7 @@
         "documentation": {}
     },
     {
+<<<<<<< HEAD
         "label": "MovieAkinator",
         "kind": 6,
         "importPath": "akinator.ap",
@@ -428,6 +453,8 @@
         "documentation": {}
     },
     {
+=======
+>>>>>>> 33d4af048b1d4618129274920434a425a9310de5
         "label": "load_users",
         "kind": 2,
         "importPath": "deploy.app",
