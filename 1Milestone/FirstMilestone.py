@@ -1,12 +1,21 @@
+"""
+Data fetcher using TMDB API
+gets and saves 6000 movies in csv file with these features -->
+
+'title', 'genres', 'release_year', 'user_rating', 'keywords', 'director', 'description', 'poster_url', 'trailer_url'
+
+"""
+
 import requests
 import csv
 
+#You might need to change to your API key from TMDB
 API_KEY = '401aa692d6aa27c92e0fc0adedd58769'
 BASE_URL = 'https://api.themoviedb.org/3/'
 MOVIE_URL = BASE_URL + 'movie/'
 SEARCH_URL = BASE_URL + 'discover/movie'
 
-# Headers for the CSV
+# features we need 
 fields = [
     'title', 'genres', 'release_year', 'user_rating',
     'keywords', 'director', 'description', 'poster_url', 'trailer_url'
@@ -61,8 +70,6 @@ def fetch_movie_details(movie_id):
         return None
 
 def fetch_movies_data():
-    all_genres_response = requests.get(f"{BASE_URL}genre/movie/list?api_key={API_KEY}&language=en-US").json()
-    all_genres = {genre['id']: genre['name'] for genre in all_genres_response.get('genres', [])}
 
     movies_data = []
     page = 1
@@ -86,7 +93,7 @@ def fetch_movies_data():
 
             page += 1
         except Exception as e:
-            print(f"Error fetching data on page {page}: {e}")
+            print(f"ERROR on {page}, problem --> {e}")
 
     return movies_data[:6000]
 
@@ -96,7 +103,7 @@ def save_to_csv(data):
         writer.writerow(fields)
         writer.writerows(data)
 
-# Fetch and save the data
+# Main - Runing stuff above
 data = fetch_movies_data()
 save_to_csv(data)
-print("Data saved to movies_data.csv")
+print("Saved in movies_data.csv")

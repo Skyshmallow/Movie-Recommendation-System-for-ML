@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Akinator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .help-box {
+            transition: all 0.3s ease;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transform: translateY(100%);
+            opacity: 0;
+            z-index: 50;
+        }
+        .help-box.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .help-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #3B82F6;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #guess-poster {
+            max-height: 400px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-600">Movie Akinator</h1>
+        
+        <div id="game-container" class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <div id="films-left-counter" class="text-center mb-4 text-gray-600 hidden">
+                Films left: <span id="films-left-number"></span>
+            </div>
+            
+            <div id="question-area" class="text-center">
+                <p id="question-text" class="text-2xl mb-4">Click Start to begin the game!</p>
+                <div id="answer-buttons" class="flex justify-center space-x-4">
+                    <button id="start-btn" class="bg-blue-500 text-white px-4 py-2 rounded">Start Game</button>
+                    <button id="yes-btn" class="hidden bg-green-500 text-white px-4 py-2 rounded">Yes</button>
+                    <button id="no-btn" class="hidden bg-red-500 text-white px-4 py-2 rounded">No</button>
+                    <button id="idk-btn" class="hidden bg-gray-500 text-white px-4 py-2 rounded">I don't know</button>
+                </div>
+            </div>
+
+            <div id="guess-area" class="hidden text-center mt-6">
+                <h2 class="text-2xl font-bold">Is this your movie?</h2>
+                <img id="guess-poster" src="" alt="Movie Poster" class="mx-auto my-4">
+                <p id="guess-title" class="text-xl font-semibold"></p>
+                <p id="guess-year" class="text-gray-500"></p>
+                <p id="guess-description" class="text-gray-700 mt-2"></p>
+                <button id="restart-btn" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Restart</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const startBtn = document.getElementById('start-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const idkBtn = document.getElementById('idk-btn');
+        const restartBtn = document.getElementById('restart-btn');
+
+        const questionText = document.getElementById('question-text');
+        const filmsLeftCounter = document.getElementById('films-left-counter');
+        const filmsLeftNumber = document.getElementById('films-left-number');
+
+        const guessArea = document.getElementById('guess-area');
+        const guessPoster = document.getElementById('guess-poster');
+        const guessTitle = document.getElementById('guess-title');
+        const guessYear = document.getElementById('guess-year');
+        const guessDescription = document.getElementById('guess-description');
+
+        let currentQuestion = null;
+
+        async function fetchGameData(endpoint, body = {}) {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            });
+            return response.json();
+        }
+
+        async function startGame() {
+            const data = await fetchGameData('/start_game');
+            currentQuestion = data.question;
+            questionText.textContent = currentQuestion.text;
+            filmsLeftCounter.classList.remove('hidden');
+            filmsLeftNumber.textContent = data.films_left;
+            toggleAnswerButtons(true);
+        }
+
+        async function submitAnswer(answer) {
+            const data = await fetchGameData('/answer', { question: currentQuestion, answer });
+
+            if (data.guess) {
+                displayGuess(data.guess);
+            } else {
+                currentQuestion = data.question;
+                questionText.textContent = currentQuestion.text;
+                filmsLeftNumber.textContent = data.films_left;
+            }
+        }
+
+        function displayGuess(guess) {
+            guessPoster.src = guess.poster || 'https://via.placeholder.com/400';
+            guessTitle.textContent = guess.title;
+            guessYear.textContent = `Year: ${guess.year}`;
+            guessDescription.textContent = guess.description;
+
+            guessArea.classList.remove('hidden');
+            toggleAnswerButtons(false);
+        }
+
+        function toggleAnswerButtons(show) {
+            const buttons = [yesBtn, noBtn, idkBtn];
+            buttons.forEach(button => button.classList.toggle('hidden', !show));
+            startBtn.classList.toggle('hidden', show);
+        }
+
+        startBtn.addEventListener('click', startGame);
+        yesBtn.addEventListener('click', () => submitAnswer(true));
+        noBtn.addEventListener('click', () => submitAnswer(false));
+        idkBtn.addEventListener('click', () => submitAnswer(null));
+        restartBtn.addEventListener('click', () => location.reload());
+    </script>
+</body>
+</html>

@@ -204,7 +204,45 @@ footer .text-light:hover {
     color: #1c1c1c;
   }
 
+ /* Media Query for small devices (phones) */
+ @media (max-width: 576px) {
+    .split-container {
+      flex-direction: column;
+    }
+
+    .left-panel, .right-panel {
+      width: 100%;
+      min-height: auto;
+    }
+
+    .movie-card {
+      width: 100%; /* Full width for small screens */
+    }
+
+    header h1 {
+      font-size: 1.5rem; /* Smaller font size for titles */
+    }
+
+    .sticky-preferences {
+      position: relative; /* Remove sticky behavior on smaller screens */
+    }
+  }
+
+  /* Media Query for medium devices (larger phones or small tablets) */
+  @media (min-width: 577px) and (max-width: 768px) {
+    .movie-card {
+      width: calc(50% - 20px); /* Two columns on medium devices */
+    }
+
+    header h1 {
+      font-size: 2rem; /* Adjust font size for titles */
+    }
+  }
+
   </style>
+
+
+
 </head>
 <body>
   <header class="d-flex align-items-center justify-content-between px-4 py-2">
@@ -368,30 +406,47 @@ document.addEventListener('DOMContentLoaded', checkLoginStatus);
 
 
 
-    document.getElementById('movieInput').addEventListener('input', async () => {
-      const query = document.getElementById('movieInput').value;
-      const suggestionsDiv = document.getElementById('suggestions');
+document.getElementById('movieInput').addEventListener('input', async () => {
+    const query = document.getElementById('movieInput').value;
+    const suggestionsDiv = document.getElementById('suggestions');
 
-      if (query.length > 1) {
+    if (query.length > 1) {
         const response = await fetch(`${backendUrl}/suggest?query=${encodeURIComponent(query)}`);
         const suggestions = await response.json();
 
         suggestionsDiv.innerHTML = '';
         suggestions.forEach(movie => {
-          const suggestion = document.createElement('div');
-          suggestion.className = 'suggestion-item';
-          suggestion.textContent = movie;
-          suggestion.addEventListener('click', () => {
-            const selectedMovies = document.getElementById('selectedMovies');
-            selectedMovies.value += `${movie}, `;
-            suggestionsDiv.innerHTML = '';
-          });
-          suggestionsDiv.appendChild(suggestion);
+            const suggestion = document.createElement('div');
+            suggestion.className = 'suggestion-item';
+
+            // Create and append the poster image
+            const poster = document.createElement('img');
+            poster.src = movie.poster_url || 'default-poster.jpg'; // Use a default poster if none available
+            poster.alt = `${movie.title} poster`;
+            poster.style.width = '50px'; // Set size of the poster
+            poster.style.marginRight = '10px'; // Add spacing between poster and text
+
+            // Create and append the text
+            const text = document.createElement('span');
+            text.textContent = movie.title;
+
+            suggestion.appendChild(poster);
+            suggestion.appendChild(text);
+
+            // Add click event
+            suggestion.addEventListener('click', () => {
+                const selectedMovies = document.getElementById('selectedMovies');
+                selectedMovies.value += `${movie.title}, `;
+                suggestionsDiv.innerHTML = '';
+            });
+
+            suggestionsDiv.appendChild(suggestion);
         });
-      } else {
+    } else {
         suggestionsDiv.innerHTML = '';
-      }
-    });
+    }
+});
+
 
     document.getElementById('recommendButton').addEventListener('click', async () => {
   const selectedMovies = document.getElementById('selectedMovies')

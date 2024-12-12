@@ -86,7 +86,7 @@ import json
 
 # Load the data
 cleaned_data = pd.read_csv('cleaned_movies.csv')
-movies_data = pd.read_csv('movies.csv')
+movies_data = pd.read_csv('2Milestone/adultAdded.csv')
 
 app = Flask(__name__, static_folder=".")
 CORS(app, supports_credentials=True)  # Enable CORS with credentials
@@ -248,8 +248,21 @@ def suggest_movies():
     if not query:
         return jsonify([])
 
-    suggestions = cleaned_data[cleaned_data['title'].str.lower().str.contains(query, na=False)]['title'].head(10).tolist()
+    # Filter cleaned_data for titles matching the query
+    # filtered_data = cleaned_data[cleaned_data['title'].str.lower().str.contains(query, na=False)]
+    filtered_data = cleaned_data[cleaned_data['title'].str.contains(query, case=False, na=False)].head(10)
+
+    # Create a dictionary to map titles to poster URLs
+    poster_map = movies_data.drop_duplicates(subset='title')[['title', 'poster_url']].set_index('title').to_dict()['poster_url']
+
+    # Add the poster URL for each movie from the poster_map
+    suggestions = filtered_data.head(10).apply(
+        lambda row: {'title': row['title'], 'poster_url': poster_map.get(row['title'], 'default-poster.jpg')},
+        axis=1
+    ).tolist()
+
     return jsonify(suggestions)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
