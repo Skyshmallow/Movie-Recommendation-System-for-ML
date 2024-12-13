@@ -49,13 +49,9 @@
         "age": "12",
         "gender": "Male",
         "selected_movies": [
-<<<<<<< HEAD
             "The Simpsons Meet the Bocellis in \"Feliz Navidad\"",
             "The Bad Guys: Haunted Heist",
             "Alien: Covenant"
-=======
-            "Toy Story 3"
->>>>>>> 33d4af048b1d4618129274920434a425a9310de5
         ]
     },
     "Nurs": {
