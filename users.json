@@ -2,7 +2,10 @@
     "Nurbek": {
         "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
         "age": "25",
-        "gender": "Male"
+        "gender": "Male",
+        "selected_movies": [
+            "Dune: Part TwoTerrifier 3"
+        ]
     },
     "Arsen": {
         "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
@@ -49,9 +52,10 @@
         "age": "12",
         "gender": "Male",
         "selected_movies": [
-            "The Simpsons Meet the Bocellis in \"Feliz Navidad\"",
-            "The Bad Guys: Haunted Heist",
-            "Alien: Covenant"
+            "Scouts Guide to the Zombie Apocalypse",
+            "Zombieland",
+            "The Karate Kid",
+            "Dune"
         ]
     },
     "Nurs": {
@@ -67,7 +71,53 @@
         "age": "19",
         "gender": "Male",
         "selected_movies": [
-            "Frozen II"
+            "Rio 2"
         ]
+    },
+    "Adilkhan": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "25",
+        "gender": "Male"
+    },
+    "kuka": {
+        "password": "dd4963ab9570256e0e6aa657c07c8b6d0872ddb18792bcfb7e004ea2ddd492d2",
+        "age": "18",
+        "gender": "Male",
+        "selected_movies": [
+            "Take Cover"
+        ]
+    },
+    "NurbekS": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "19",
+        "gender": "Male",
+        "selected_movies": [
+            "Dune",
+            "Dune: Part Two"
+        ]
+    },
+    "akanseri": {
+        "password": "562fae5afe511c1183eff82c16d60e591dfc8981e40fd3d8953bef553e3380b0",
+        "age": "31",
+        "gender": "Male",
+        "selected_movies": [
+            "Gladiator II",
+            "Troy"
+        ]
+    },
+    "kiko": {
+        "password": "d0cc4101c015609d3e6e9bff2cfcf643ec4b05330949c658472516e2220afae1",
+        "age": "18",
+        "gender": "Male"
+    },
+    "Bitch228": {
+        "password": "3dad840d7980cce4a9eb759a501bc9d257a88b5fd107098dc82a10116884f38e",
+        "age": "19",
+        "gender": "Male"
+    },
+    "Olan": {
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "age": "25",
+        "gender": "Female"
     }
 }

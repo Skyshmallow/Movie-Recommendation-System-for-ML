@@ -17,7 +17,7 @@
       background-size: cover;
     }
     .login-container {
-      background-color: rgba(28, 28, 28, 0.8); /* Slight transparency */
+      background-color: rgba(28, 28, 28, 0.8); 
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -25,7 +25,7 @@
     }
     .login-container h1 {
       text-align: center;
-      color: #fff; /* White text for visibility */
+      color: #fff; 
       margin-bottom: 20px;
     }
     .login-form input {
@@ -35,11 +35,11 @@
       border: 1px solid #fa1515;
       border-radius: 4px;
       box-sizing: border-box;
-      background-color: rgba(255, 255, 255, 0.2); /* Transparent background */
-      color: #fff; /* White text for visibility */
+      background-color: rgba(255, 255, 255, 0.2); 
+      color: #fff; 
     }
     .login-form input::placeholder {
-      color: #ddd; /* Light color for placeholder text */
+      color: #ddd; 
     }
     .login-form button {
       width: 100%;
@@ -91,7 +91,7 @@
       try {
         const response = await fetch('/login', {
           method: 'POST',
-          credentials: 'include', // Important for session cookies
+          credentials: 'include', 
           headers: { 
             'Content-Type': 'application/json'
           },
@@ -101,10 +101,11 @@
         const result = await response.json();
         
         if (response.ok) {
-          // Redirect to the main page on successful login
+//Redirect to the main page on successful login
           window.location.href = "index.html";
         } else {
-          // Show error message
+
+//show error message
           alert(result.error || 'Login failed');
         }
       } catch (error) {

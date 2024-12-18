@@ -36,44 +36,21 @@
         "documentation": {}
     },
     {
+        "label": "import_ipynb",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "import_ipynb",
+        "description": "import_ipynb",
+        "detail": "import_ipynb",
+        "documentation": {}
+    },
+    {
         "label": "random",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "random",
         "description": "random",
         "detail": "random",
-        "documentation": {}
-    },
-    {
-        "label": "Flask",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "render_template",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "jsonify",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "request",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
         "documentation": {}
     },
     {
@@ -125,37 +102,11 @@
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
         "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
-        "label": "numpy",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "numpy",
-        "description": "numpy",
-        "detail": "numpy",
-        "documentation": {}
-    },
-    {
-        "label": "import_ipynb",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "import_ipynb",
-        "description": "import_ipynb",
-        "detail": "import_ipynb",
-        "documentation": {}
-    },
-    {
-        "label": "recommend_movies",
-        "importPath": "forth",
-        "description": "forth",
-        "isExtraImport": true,
-        "detail": "forth",
+        "detail": "flask",
         "documentation": {}
     },
     {
@@ -164,6 +115,15 @@
         "description": "flask_cors",
         "isExtraImport": true,
         "detail": "flask_cors",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -176,12 +136,19 @@
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "recommend_movies",
+        "importPath": "forth",
+        "description": "forth",
+        "isExtraImport": true,
+        "detail": "forth",
         "documentation": {}
     },
     {
@@ -277,154 +244,10 @@
     {
         "label": "MovieAkinator",
         "kind": 6,
-        "importPath": "akinator.ap",
-        "description": "akinator.ap",
-        "peekOfCode": "class MovieAkinator:\n    def __init__(self, dataframe):\n        self.df = dataframe\n        self.questions = [\n            {\"type\": \"genre\", \"weight\": 0.4, \"text\": \"Is the movie in the {} genre?\"},\n            {\"type\": \"keyword\", \"weight\": 0.45, \"text\": \"Does the movie involve the keyword '{}'?\"},\n            {\"type\": \"adult\", \"weight\": 0.05, \"text\": \"Is this an adult-themed movie?\"},\n            {\"type\": \"director\", \"weight\": 0.05, \"text\": \"Was the movie directed by {}?\"},\n            {\"type\": \"year_range\", \"weight\": 0.05, \"text\": \"Was the movie released between {} and {} years?\"}\n        ]",
-        "detail": "akinator.ap",
-        "documentation": {}
-    },
-    {
-        "label": "index",
-        "kind": 2,
-        "importPath": "akinator.ap",
-        "description": "akinator.ap",
-        "peekOfCode": "def index():\n    return render_template('index.html')\n@app.route('/start_game', methods=['POST'])\ndef start_game():\n    global game\n    game = MovieAkinator(df)\n    question = game.generate_weighted_question()\n    return jsonify({\n        \"question\": question,\n        \"films_left\": len(game.possible_movies)",
-        "detail": "akinator.ap",
-        "documentation": {}
-    },
-    {
-        "label": "start_game",
-        "kind": 2,
-        "importPath": "akinator.ap",
-        "description": "akinator.ap",
-        "peekOfCode": "def start_game():\n    global game\n    game = MovieAkinator(df)\n    question = game.generate_weighted_question()\n    return jsonify({\n        \"question\": question,\n        \"films_left\": len(game.possible_movies)\n    })\n@app.route('/answer', methods=['POST'])\ndef answer_question():",
-        "detail": "akinator.ap",
-        "documentation": {}
-    },
-    {
-        "label": "answer_question",
-        "kind": 2,
-        "importPath": "akinator.ap",
-        "description": "akinator.ap",
-        "peekOfCode": "def answer_question():\n    global game\n    if game is None:\n        return jsonify({\"error\": \"Game not started. Please start the game first.\"}), 400\n    data = request.json\n    question = data.get('question')\n    answer = data.get('answer')  # This could be True, False, or None (for \"idk\")\n    if not question:\n        return jsonify({\"error\": \"Invalid input. Question is required.\"}), 400\n    # Pass None answer to the game logic without filtering",
-        "detail": "akinator.ap",
-        "documentation": {}
-    },
-    {
-        "label": "page_not_found",
-        "kind": 2,
-        "importPath": "akinator.ap",
-        "description": "akinator.ap",
-        "peekOfCode": "def page_not_found(e):\n    return render_template('404.html'), 404\nif __name__ == '__main__':\n    app.run(debug=True)",
-        "detail": "akinator.ap",
-        "documentation": {}
-    },
-    {
-        "label": "app",
-        "kind": 5,
-        "importPath": "akinator.ap",
-        "description": "akinator.ap",
-        "peekOfCode": "app = Flask(__name__)\n# Ensure secret key is set\napp.secret_key = os.getenv('SECRET_KEY', 'fallback_secret_key_change_in_production')\n# Load the movie dataset\ntry:\n    df = pd.read_csv('akinator/cleaned_adultAdded.csv')\nexcept Exception as e:\n    print(f\"Error loading dataset: {e}\")\n    df = pd.DataFrame()  # Fallback empty DataFrame\nclass MovieAkinator:",
-        "detail": "akinator.ap",
-        "documentation": {}
-    },
-    {
-        "label": "app.secret_key",
-        "kind": 5,
-        "importPath": "akinator.ap",
-        "description": "akinator.ap",
-        "peekOfCode": "app.secret_key = os.getenv('SECRET_KEY', 'fallback_secret_key_change_in_production')\n# Load the movie dataset\ntry:\n    df = pd.read_csv('akinator/cleaned_adultAdded.csv')\nexcept Exception as e:\n    print(f\"Error loading dataset: {e}\")\n    df = pd.DataFrame()  # Fallback empty DataFrame\nclass MovieAkinator:\n    def __init__(self, dataframe):\n        self.df = dataframe",
-        "detail": "akinator.ap",
-        "documentation": {}
-    },
-    {
-        "label": "game",
-        "kind": 5,
-        "importPath": "akinator.ap",
-        "description": "akinator.ap",
-        "peekOfCode": "game = None\n@app.route('/')\ndef index():\n    return render_template('index.html')\n@app.route('/start_game', methods=['POST'])\ndef start_game():\n    global game\n    game = MovieAkinator(df)\n    question = game.generate_weighted_question()\n    return jsonify({",
-        "detail": "akinator.ap",
-        "documentation": {}
-    },
-    {
-        "label": "clean_text",
-        "kind": 2,
-        "importPath": "akinator.cleaner",
-        "description": "akinator.cleaner",
-        "peekOfCode": "def clean_text(text):\n    \"\"\"\n    Clean and standardize text fields\n    \"\"\"\n    if pd.isna(text):\n        return ''\n    return ' '.join(str(text).split())\ndef clean_genres(genres):\n    \"\"\"\n    Clean and standardize genres",
-        "detail": "akinator.cleaner",
-        "documentation": {}
-    },
-    {
-        "label": "clean_genres",
-        "kind": 2,
-        "importPath": "akinator.cleaner",
-        "description": "akinator.cleaner",
-        "peekOfCode": "def clean_genres(genres):\n    \"\"\"\n    Clean and standardize genres\n    \"\"\"\n    if pd.isna(genres):\n        return ''\n    # Split, strip, remove duplicates, title case\n    genres_list = [g.strip().title() for g in str(genres).split('|')]\n    return '|'.join(sorted(set(genres_list)))\ndef clean_keywords(keywords):",
-        "detail": "akinator.cleaner",
-        "documentation": {}
-    },
-    {
-        "label": "clean_keywords",
-        "kind": 2,
-        "importPath": "akinator.cleaner",
-        "description": "akinator.cleaner",
-        "peekOfCode": "def clean_keywords(keywords):\n    \"\"\"\n    Clean and standardize keywords\n    \"\"\"\n    if pd.isna(keywords):\n        return ''\n    # Split, strip, lowercase, remove duplicates\n    keywords_list = [k.strip().lower() for k in str(keywords).split('|')]\n    return '|'.join(sorted(set(keywords_list)))\ndef preprocess_movie_data(input_file, output_file):",
-        "detail": "akinator.cleaner",
-        "documentation": {}
-    },
-    {
-        "label": "preprocess_movie_data",
-        "kind": 2,
-        "importPath": "akinator.cleaner",
-        "description": "akinator.cleaner",
-        "peekOfCode": "def preprocess_movie_data(input_file, output_file):\n    \"\"\"\n    Comprehensive preprocessing of movie dataset\n    \"\"\"\n    # Read the CSV\n    try:\n        df = pd.read_csv(input_file)\n    except Exception as e:\n        print(f\"Error reading file: {e}\")\n        return None",
-        "detail": "akinator.cleaner",
-        "documentation": {}
-    },
-    {
-        "label": "main",
-        "kind": 2,
-        "importPath": "akinator.cleaner",
-        "description": "akinator.cleaner",
-        "peekOfCode": "def main():\n    # Example usage\n    input_file = 'akinator/adultAdded.csv'  # Your original CSV\n    output_file = 'akinator/cleaned_adultAdded.csv'\n    preprocessed_df = preprocess_movie_data(input_file, output_file)\n    if preprocessed_df is not None:\n        # Display some statistics\n        print(\"\\nDataset Statistics:\")\n        print(f\"Total Movies: {len(preprocessed_df)}\")\n        print(\"\\nSample of Preprocessed Data:\")",
-        "detail": "akinator.cleaner",
-        "documentation": {}
-    },
-    {
-        "label": "load_data",
-        "kind": 2,
-        "importPath": "akinator.shit",
-        "description": "akinator.shit",
-        "peekOfCode": "def load_data():\n    # Replace with your dataset path\n    return pd.read_csv(\"akinator/adultAdded.csv\")\n# Ask Yes/No Questions\ndef ask_yes_no(question):\n    while True:\n        answer = input(f\"{question} (yes/no): \").strip().lower()\n        if answer in ['yes', 'no']:\n            return answer == 'yes'\n        print(\"Please answer 'yes' or 'no'.\")",
-        "detail": "akinator.shit",
-        "documentation": {}
-    },
-    {
-        "label": "ask_yes_no",
-        "kind": 2,
-        "importPath": "akinator.shit",
-        "description": "akinator.shit",
-        "peekOfCode": "def ask_yes_no(question):\n    while True:\n        answer = input(f\"{question} (yes/no): \").strip().lower()\n        if answer in ['yes', 'no']:\n            return answer == 'yes'\n        print(\"Please answer 'yes' or 'no'.\")\n# Ask for a Numeric Range\ndef ask_numeric(question, min_val, max_val):\n    while True:\n        try:",
-        "detail": "akinator.shit",
-        "documentation": {}
-    },
-    {
-        "label": "ask_numeric",
-        "kind": 2,
-        "importPath": "akinator.shit",
-        "description": "akinator.shit",
-        "peekOfCode": "def ask_numeric(question, min_val, max_val):\n    while True:\n        try:\n            answer = int(input(f\"{question} (between {min_val} and {max_val}): \"))\n            if min_val <= answer <= max_val:\n                return answer\n            print(f\"Please enter a number between {min_val} and {max_val}.\")\n        except ValueError:\n            print(\"Please enter a valid number.\")\n# Game Logic",
-        "detail": "akinator.shit",
-        "documentation": {}
-    },
-    {
-        "label": "akinator_game",
-        "kind": 2,
-        "importPath": "akinator.shit",
-        "description": "akinator.shit",
-        "peekOfCode": "def akinator_game(data):\n    filtered_data = data.copy()\n    while len(filtered_data) > 1:\n        print(f\"\\nCurrent number of movies: {len(filtered_data)}\")\n        # Filter by Genre\n        if ask_yes_no(\"Do you want to filter by genre?\"):\n            genre = input(f\"Choose a genre ({', '.join(filtered_data['genres'].unique())}): \").strip()\n            filtered_data = filtered_data[filtered_data['genres'].str.contains(genre, case=False, na=False)]\n        # Filter by Release Year\n        if ask_yes_no(\"Do you want to filter by release year?\"):",
-        "detail": "akinator.shit",
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "class MovieAkinator:\n    def __init__(self, dataframe):\n        self.possible_movies = dataframe.copy()\n        self.asked_elements = set()\n#generate the next question based on most frequent genre, keyword, or director\n    def generate_question(self):\n        if len(self.possible_movies) <= 1:\n            return None\n#Get the most common genre/keyword/director\n        best = self.get_most_frequent_element()",
+        "detail": "deploy.app",
         "documentation": {}
     },
     {
@@ -432,7 +255,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:\n        return json.load(f)\ndef save_users(users):\n    with open('users.json', 'w') as f:\n        json.dump(users, f, indent=4)\ndef hash_password(password):",
+        "peekOfCode": "def load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:\n        return json.load(f)\n# Save user data back to the json file\ndef save_users(users):\n    with open('users.json', 'w') as f:\n        json.dump(users, f, indent=4)",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -441,7 +264,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def save_users(users):\n    with open('users.json', 'w') as f:\n        json.dump(users, f, indent=4)\ndef hash_password(password):\n    return hashlib.sha256(password.encode()).hexdigest()\n# Authentication routes\n@app.route('/register', methods=['POST'])\ndef register():\n    data = request.json\n    username = data.get('username')",
+        "peekOfCode": "def save_users(users):\n    with open('users.json', 'w') as f:\n        json.dump(users, f, indent=4)\ndef hash_password(password):\n    return hashlib.sha256(password.encode()).hexdigest()\n# register a new user\n@app.route('/register', methods=['POST'])\ndef register():\n    data = request.json\n    username = data.get('username')",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -450,7 +273,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def hash_password(password):\n    return hashlib.sha256(password.encode()).hexdigest()\n# Authentication routes\n@app.route('/register', methods=['POST'])\ndef register():\n    data = request.json\n    username = data.get('username')\n    password = data.get('password')\n    age = data.get('age')\n    gender = data.get('gender')",
+        "peekOfCode": "def hash_password(password):\n    return hashlib.sha256(password.encode()).hexdigest()\n# register a new user\n@app.route('/register', methods=['POST'])\ndef register():\n    data = request.json\n    username = data.get('username')\n    password = data.get('password')\n    age = data.get('age')\n    gender = data.get('gender')",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -477,16 +300,25 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def logout():\n    session.pop('username', None)\n    return jsonify({'message': 'Logged out successfully'}), 200\n# Static file serving routes\n@app.route('/')\ndef index():\n    if 'username' not in session:\n        return send_from_directory(app.static_folder, \"login.html\")\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')",
+        "peekOfCode": "def logout():\n    session.pop('username', None)\n    return jsonify({'message': 'Logged out successfully'}), 200\n#Get recommendations based on user-selected movies\n@app.route('/')\ndef deploy_index():\n    return render_template('index.html')\n@app.route('/index.html')\ndef serve_index():\n    return render_template('index.html')",
         "detail": "deploy.app",
         "documentation": {}
     },
     {
-        "label": "index",
+        "label": "deploy_index",
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def index():\n    if 'username' not in session:\n        return send_from_directory(app.static_folder, \"login.html\")\n    return send_from_directory(app.static_folder, \"index.html\")\n@app.route('/<path:path>')\ndef serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['POST'])\ndef recommend_endpoint():\n    if 'username' not in session:",
+        "peekOfCode": "def deploy_index():\n    return render_template('index.html')\n@app.route('/index.html')\ndef serve_index():\n    return render_template('index.html')\n@app.route('/<path:path>')\ndef serve_static_file(path):\n#if files are in static folder\n    return send_from_directory(app.static_folder, path)\nfrom forth import recommend_movies  ",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "serve_index",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def serve_index():\n    return render_template('index.html')\n@app.route('/<path:path>')\ndef serve_static_file(path):\n#if files are in static folder\n    return send_from_directory(app.static_folder, path)\nfrom forth import recommend_movies  \n@app.route('/recommend', methods=['POST'])\ndef recommend_endpoint():\n    data = request.json",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -495,7 +327,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def serve_static_file(path):\n    return send_from_directory(app.static_folder, path)\n@app.route('/recommend', methods=['POST'])\ndef recommend_endpoint():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401\n    # Get the logged-in username\n    username = session['username']\n    # Parse the selected movies from the request\n    data = request.json",
+        "peekOfCode": "def serve_static_file(path):\n#if files are in static folder\n    return send_from_directory(app.static_folder, path)\nfrom forth import recommend_movies  \n@app.route('/recommend', methods=['POST'])\ndef recommend_endpoint():\n    data = request.json\n    selected_movies = data.get('selected_movies', [])\n    if not selected_movies:\n        return jsonify({'error': 'No movies selected'}), 400",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -504,7 +336,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def recommend_endpoint():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401\n    # Get the logged-in username\n    username = session['username']\n    # Parse the selected movies from the request\n    data = request.json\n    selected_movies = data.get('selected_movies', [])\n    if not selected_movies:\n        return jsonify({'error': 'No movies selected'}), 400",
+        "peekOfCode": "def recommend_endpoint():\n    data = request.json\n    selected_movies = data.get('selected_movies', [])\n    if not selected_movies:\n        return jsonify({'error': 'No movies selected'}), 400\n#save selected movies for logged-in users\n    if 'username' in session:\n        username = session['username']\n        users = load_users()\n        if username in users:",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -513,7 +345,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def movie_details():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401\n    title = request.args.get('title')\n    movie = movies_data[movies_data['title'] == title]\n    if movie.empty:\n        return jsonify({'error': f\"No details found for movie: {title}\"})\n    movie = movie.iloc[0]\n    trailer_url = movie['trailer_url']\n    if pd.isna(trailer_url):",
+        "peekOfCode": "def movie_details():\n    title = request.args.get('title')\n    movie = movies_data[movies_data['title'] == title]\n    if movie.empty:\n        return jsonify({'error': f\"No details found for movie: {title}\"})\n    movie = movie.iloc[0]\n    trailer_url = movie['trailer_url']\n    if pd.isna(trailer_url):\n        trailer_url = None\n    else:",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -522,7 +354,7 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def is_logged_in():\n    if 'username' in session:\n        users = load_users()\n        selected_movies = users[session['username']].get('selected_movies', [])\n        return jsonify({'logged_in': True, 'username': session['username'], 'selected_movies': selected_movies})\n    return jsonify({'logged_in': False})\n@app.route('/suggest', methods=['GET'])\ndef suggest_movies():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401",
+        "peekOfCode": "def is_logged_in():\n    if 'username' in session:\n        users = load_users()\n        selected_movies = users[session['username']].get('selected_movies', [])\n        return jsonify({'logged_in': True, 'username': session['username'], 'selected_movies': selected_movies})\n    return jsonify({'logged_in': False})\n#Suggest movies based on a search query\n@app.route('/suggest', methods=['GET'])\ndef suggest_movies():\n    query = request.args.get('query', '').lower()",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -531,25 +363,34 @@
         "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "def suggest_movies():\n    if 'username' not in session:\n        return jsonify({'error': 'Unauthorized'}), 401\n    query = request.args.get('query', '').lower()\n    if not query:\n        return jsonify([])\n    # Filter cleaned_data for titles matching the query\n    # filtered_data = cleaned_data[cleaned_data['title'].str.lower().str.contains(query, na=False)]\n    filtered_data = cleaned_data[cleaned_data['title'].str.contains(query, case=False, na=False)].head(10)\n    # Create a dictionary to map titles to poster URLs",
+        "peekOfCode": "def suggest_movies():\n    query = request.args.get('query', '').lower()\n    if not query:\n        return jsonify([])\n# find movies matching the query\n    filtered_data = cleaned_data[cleaned_data['title'].str.contains(query, case=False, na=False)].head(10)\n    poster_map = movies_data.drop_duplicates(subset='title')[['title', 'poster_url']].set_index('title').to_dict()['poster_url']\n#Format suggestions with title and poster URL\n    suggestions = filtered_data.apply(\n        lambda row: {'title': row['title'], 'poster_url': poster_map.get(row['title'], 'default-poster.jpg')},",
         "detail": "deploy.app",
         "documentation": {}
     },
     {
-        "label": "cleaned_data",
-        "kind": 5,
+        "label": "akinator_page",
+        "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "cleaned_data = pd.read_csv('cleaned_movies.csv')\nmovies_data = pd.read_csv('2Milestone/adultAdded.csv')\napp = Flask(__name__, static_folder=\".\")\nCORS(app, supports_credentials=True)  # Enable CORS with credentials\napp.secret_key = 'your_secret_key_here'  # Important for session management\n# User management functions\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)",
+        "peekOfCode": "def akinator_page():\n    return render_template('akinator.html')\n#start new game\n@app.route('/start_game', methods=['POST'])\ndef start_game():\n    global akinator_game\n    data = request.json\n    include_adult = data.get('include_adult', False)\n    filtered_df = akinator_df.copy()\n    if not include_adult:",
         "detail": "deploy.app",
         "documentation": {}
     },
     {
-        "label": "movies_data",
-        "kind": 5,
+        "label": "start_game",
+        "kind": 2,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "movies_data = pd.read_csv('2Milestone/adultAdded.csv')\napp = Flask(__name__, static_folder=\".\")\nCORS(app, supports_credentials=True)  # Enable CORS with credentials\napp.secret_key = 'your_secret_key_here'  # Important for session management\n# User management functions\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:",
+        "peekOfCode": "def start_game():\n    global akinator_game\n    data = request.json\n    include_adult = data.get('include_adult', False)\n    filtered_df = akinator_df.copy()\n    if not include_adult:\n        filtered_df = filtered_df[filtered_df['adult'] == 0]\n    akinator_game = MovieAkinator(filtered_df)\n    question = akinator_game.generate_question()\n    return jsonify({",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "answer_question",
+        "kind": 2,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "def answer_question():\n    global akinator_game\n    if akinator_game is None:\n        return jsonify({\"error\": \"Game not started. Please start the game first.\"}), 400\n    data = request.json\n    question = data.get('question')\n    answer = data.get('answer')  # True/False/None\n    if not question:\n        return jsonify({\"error\": \"Invalid input. Question is required.\"}), 400\n    akinator_game.filter_movies(question, answer)",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -558,7 +399,7 @@
         "kind": 5,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "app = Flask(__name__, static_folder=\".\")\nCORS(app, supports_credentials=True)  # Enable CORS with credentials\napp.secret_key = 'your_secret_key_here'  # Important for session management\n# User management functions\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:\n        return json.load(f)",
+        "peekOfCode": "app = Flask(__name__, static_folder=\".\")\nCORS(app, supports_credentials=True)  \napp.secret_key = os.getenv('SECRET_KEY', 'fallback_secret_key_change_in_production')\n#----------------------------------------\n# Deploy (User Management, Recommendations)\n#----------------------------------------\n#load data\ncleaned_data = pd.read_csv('cleaned_movies.csv')\nmovies_data = pd.read_csv('2Milestone/adultAdded.csv')\n#load user data from a json file",
         "detail": "deploy.app",
         "documentation": {}
     },
@@ -567,8 +408,71 @@
         "kind": 5,
         "importPath": "deploy.app",
         "description": "deploy.app",
-        "peekOfCode": "app.secret_key = 'your_secret_key_here'  # Important for session management\n# User management functions\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:\n        return json.load(f)\ndef save_users(users):\n    with open('users.json', 'w') as f:",
+        "peekOfCode": "app.secret_key = os.getenv('SECRET_KEY', 'fallback_secret_key_change_in_production')\n#----------------------------------------\n# Deploy (User Management, Recommendations)\n#----------------------------------------\n#load data\ncleaned_data = pd.read_csv('cleaned_movies.csv')\nmovies_data = pd.read_csv('2Milestone/adultAdded.csv')\n#load user data from a json file\ndef load_users():\n    if not os.path.exists('users.json'):",
         "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "cleaned_data",
+        "kind": 5,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "cleaned_data = pd.read_csv('cleaned_movies.csv')\nmovies_data = pd.read_csv('2Milestone/adultAdded.csv')\n#load user data from a json file\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:\n        return json.load(f)\n# Save user data back to the json file",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "movies_data",
+        "kind": 5,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "movies_data = pd.read_csv('2Milestone/adultAdded.csv')\n#load user data from a json file\ndef load_users():\n    if not os.path.exists('users.json'):\n        with open('users.json', 'w') as f:\n            json.dump({}, f)\n    with open('users.json', 'r') as f:\n        return json.load(f)\n# Save user data back to the json file\ndef save_users(users):",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "akinator_game",
+        "kind": 5,
+        "importPath": "deploy.app",
+        "description": "deploy.app",
+        "peekOfCode": "akinator_game = None\n#Serve the Akinator game page\n@app.route('/akinator/')\ndef akinator_page():\n    return render_template('akinator.html')\n#start new game\n@app.route('/start_game', methods=['POST'])\ndef start_game():\n    global akinator_game\n    data = request.json",
+        "detail": "deploy.app",
+        "documentation": {}
+    },
+    {
+        "label": "input_file",
+        "kind": 5,
+        "importPath": "deploy.cleaner",
+        "description": "deploy.cleaner",
+        "peekOfCode": "input_file = '2Milestone/adultAdded.csv'  \noutput_file = 'deploy/cleaned_adultAdded1.csv'  \ndf = pd.read_csv(input_file)\ndf_cleaned = df.drop_duplicates(subset='title', keep='first')\n#save the cleaned data to a new file\ndf_cleaned.to_csv(output_file, index=False)\nprint(f\"Duplicates removed. Cleaned file saved to {output_file}\")",
+        "detail": "deploy.cleaner",
+        "documentation": {}
+    },
+    {
+        "label": "output_file",
+        "kind": 5,
+        "importPath": "deploy.cleaner",
+        "description": "deploy.cleaner",
+        "peekOfCode": "output_file = 'deploy/cleaned_adultAdded1.csv'  \ndf = pd.read_csv(input_file)\ndf_cleaned = df.drop_duplicates(subset='title', keep='first')\n#save the cleaned data to a new file\ndf_cleaned.to_csv(output_file, index=False)\nprint(f\"Duplicates removed. Cleaned file saved to {output_file}\")",
+        "detail": "deploy.cleaner",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "deploy.cleaner",
+        "description": "deploy.cleaner",
+        "peekOfCode": "df = pd.read_csv(input_file)\ndf_cleaned = df.drop_duplicates(subset='title', keep='first')\n#save the cleaned data to a new file\ndf_cleaned.to_csv(output_file, index=False)\nprint(f\"Duplicates removed. Cleaned file saved to {output_file}\")",
+        "detail": "deploy.cleaner",
+        "documentation": {}
+    },
+    {
+        "label": "df_cleaned",
+        "kind": 5,
+        "importPath": "deploy.cleaner",
+        "description": "deploy.cleaner",
+        "peekOfCode": "df_cleaned = df.drop_duplicates(subset='title', keep='first')\n#save the cleaned data to a new file\ndf_cleaned.to_csv(output_file, index=False)\nprint(f\"Duplicates removed. Cleaned file saved to {output_file}\")",
+        "detail": "deploy.cleaner",
         "documentation": {}
     }
 ]

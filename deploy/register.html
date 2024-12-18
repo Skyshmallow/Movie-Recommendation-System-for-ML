@@ -45,14 +45,14 @@
     .register-form select {
         color: #fff;
         background-color: rgba(255, 255, 255, 0.2);
-        appearance: none; /* Removes default styling */
-        -webkit-appearance: none; /* For webkit browsers */
-        -moz-appearance: none; /* For Firefox */
+        appearance: none; 
+        -webkit-appearance: none; 
+        -moz-appearance: none; 
     }
-    /* Custom styling for select options */
+    
     .register-form select option {
-        background-color: rgba(28, 28, 28, 0.9); /* Dark transparent background for options */
-        color: #fff; /* White text for options */
+        background-color: rgba(28, 28, 28, 0.9); 
+        color: #fff; 
     }
     .register-form button {
         width: 100%;
@@ -129,7 +129,7 @@
           alert('Registration successful! Please login.');
           window.location.href = "login.html";
         } else {
-          // Show error message
+         
           alert(result.error || 'Registration failed');
         }
       } catch (error) {

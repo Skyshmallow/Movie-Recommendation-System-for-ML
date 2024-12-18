@@ -47,42 +47,55 @@
     </style>
 </head>
 <body class="bg-gray-100">
+   <!--page container -->
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-4xl font-bold text-center mb-8 text-blue-600">Movie Akinator</h1>
-        
+
+<!--Game area-->
         <div id="game-container" class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
             <div id="films-left-counter" class="text-center mb-4 text-gray-600 hidden">
                 Films left: <span id="films-left-number"></span>
             </div>
-            
+
+<!--area for questions and buttons-->
             <div id="question-area" class="text-center">
                 <p id="question-text" class="text-2xl mb-4">Click Start to begin the game!</p>
+                
+                <div id="adult-toggle-container" class="flex items-center justify-center mb-4">
+                    <label for="adult-toggle" class="mr-2 text-gray-700">Include Adult Movies:</label>
+                    <input id="adult-toggle" type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+                </div>
+                
                 <div id="answer-buttons" class="flex justify-center space-x-4">
                     <button id="start-btn" class="bg-blue-500 text-white px-4 py-2 rounded">Start Game</button>
                     <button id="yes-btn" class="hidden bg-green-500 text-white px-4 py-2 rounded">Yes</button>
                     <button id="no-btn" class="hidden bg-red-500 text-white px-4 py-2 rounded">No</button>
                     <button id="idk-btn" class="hidden bg-gray-500 text-white px-4 py-2 rounded">I don't know</button>
+                    <button id="restart-btn" class="hidden bg-blue-500 text-white px-4 py-2 rounded">Restart</button>
                 </div>
             </div>
-
+         <!--Display the guessed movie-->        
             <div id="guess-area" class="hidden text-center mt-6">
                 <h2 class="text-2xl font-bold">Is this your movie?</h2>
                 <img id="guess-poster" src="" alt="Movie Poster" class="mx-auto my-4">
                 <p id="guess-title" class="text-xl font-semibold"></p>
                 <p id="guess-year" class="text-gray-500"></p>
                 <p id="guess-description" class="text-gray-700 mt-2"></p>
-                <button id="restart-btn" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Restart</button>
             </div>
         </div>
+        
     </div>
 
     <script>
+
+//buttons
         const startBtn = document.getElementById('start-btn');
         const yesBtn = document.getElementById('yes-btn');
         const noBtn = document.getElementById('no-btn');
         const idkBtn = document.getElementById('idk-btn');
         const restartBtn = document.getElementById('restart-btn');
 
+//text and game areas
         const questionText = document.getElementById('question-text');
         const filmsLeftCounter = document.getElementById('films-left-counter');
         const filmsLeftNumber = document.getElementById('films-left-number');
@@ -95,6 +108,7 @@
 
         let currentQuestion = null;
 
+//Function to fetch data from the server
         async function fetchGameData(endpoint, body = {}) {
             const response = await fetch(endpoint, {
                 method: 'POST',
@@ -105,38 +119,108 @@
             });
             return response.json();
         }
-
+ //start the game
         async function startGame() {
-            const data = await fetchGameData('/start_game');
-            currentQuestion = data.question;
-            questionText.textContent = currentQuestion.text;
-            filmsLeftCounter.classList.remove('hidden');
-            filmsLeftNumber.textContent = data.films_left;
-            toggleAnswerButtons(true);
-        }
+    const includeAdult = document.getElementById('adult-toggle').checked;
+    const data = await fetchGameData('/start_game', { include_adult: includeAdult });
+    
+    currentQuestion = data.question;
+    if (currentQuestion) {
+        questionText.textContent = currentQuestion.text;
+    } else {
+        questionText.textContent = "No questions available.";
+    }
+    
+    filmsLeftCounter.classList.remove('hidden');
+    filmsLeftNumber.textContent = data.films_left;
 
-        async function submitAnswer(answer) {
-            const data = await fetchGameData('/answer', { question: currentQuestion, answer });
+ //hide the adult toggle
+    document.getElementById('adult-toggle-container').classList.add('hidden');
 
-            if (data.guess) {
-                displayGuess(data.guess);
-            } else {
-                currentQuestion = data.question;
-                questionText.textContent = currentQuestion.text;
-                filmsLeftNumber.textContent = data.films_left;
-            }
-        }
+    toggleAnswerButtons(true);
+}
 
+
+//Submit the answer of user
+async function submitAnswer(answer) {
+    const data = await fetchGameData('/answer', { question: currentQuestion, answer });
+
+    if (data.guess) {
+        displayGuess(data.guess);
+    } else if (data.remaining_movies) {
+        displayRemainingMovies(data.remaining_movies);
+    } else if (data.question) {
+        //update question
+        currentQuestion = data.question;
+        questionText.textContent = currentQuestion.text;
+        filmsLeftNumber.textContent = data.films_left;
+    } else {
+        questionText.textContent = "No further questions. Game ended.";
+    }
+}
+
+function displayRemainingMovies(movies) {
+    document.getElementById('question-area').classList.add('hidden');
+
+    guessArea.classList.remove('hidden');
+    
+//Clear guess area and add a header
+    guessArea.innerHTML = "<h2 class='text-2xl font-bold mb-4'>Here are the remaining movies:</h2>";
+
+    const gridContainer = document.createElement('div');
+    gridContainer.className = "grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+
+//for each movie create a card
+    movies.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.className = "bg-white rounded-lg shadow p-4 flex flex-col items-center";
+
+        const titleEl = document.createElement('h3');
+        titleEl.className = "text-xl font-semibold mb-2 text-center";
+        titleEl.textContent = `${movie.title} (${movie.year})`;
+
+        const posterEl = document.createElement('img');
+        posterEl.src = movie.poster || 'https://via.placeholder.com/400';
+        posterEl.alt = movie.title;
+        posterEl.className = "mb-2 w-full h-auto object-contain";
+        posterEl.style.maxHeight = "200px";
+
+        const descEl = document.createElement('p');
+        descEl.className = "text-gray-700 text-center";
+        descEl.textContent = movie.description;
+
+        movieCard.appendChild(titleEl);
+        movieCard.appendChild(posterEl);
+        movieCard.appendChild(descEl);
+
+        gridContainer.appendChild(movieCard);
+    });
+
+    guessArea.appendChild(gridContainer);
+
+//show the restart button to end the game
+    toggleAnswerButtons(false);
+    startBtn.classList.add('hidden');
+    restartBtn.classList.remove('hidden');
+}
+
+//display the guess of server
         function displayGuess(guess) {
-            guessPoster.src = guess.poster || 'https://via.placeholder.com/400';
-            guessTitle.textContent = guess.title;
-            guessYear.textContent = `Year: ${guess.year}`;
-            guessDescription.textContent = guess.description;
+    guessPoster.src = guess.poster || 'https://via.placeholder.com/400';
+    guessTitle.textContent = guess.title;
+    guessYear.textContent = `Year: ${guess.year}`;
+    guessDescription.textContent = guess.description;
 
-            guessArea.classList.remove('hidden');
-            toggleAnswerButtons(false);
-        }
+    guessArea.classList.remove('hidden');
 
+//Hide the answer buttons and show the restart button
+    toggleAnswerButtons(false);
+    startBtn.classList.add('hidden');
+    restartBtn.classList.remove('hidden'); 
+}
+
+
+//toggle visibility of buttons
         function toggleAnswerButtons(show) {
             const buttons = [yesBtn, noBtn, idkBtn];
             buttons.forEach(button => button.classList.toggle('hidden', !show));
